@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="development">
+		<environment id="development">
+			<!--Spring 트랜잭션 사용시 불필요 spring이 알아서 설정을 오버라이딩함 -->
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+				<!--OPTIONAL PROPERTIES BELOW -->
+				<property name="Pool.MaximumActiveConnections" value="10" />
+				<property name="Pool.MaximumIdleConnections" value="5" />
+				<property name="Pool.MaximumCheckoutTime" value="120000" />
+				<property name="Pool.TimeToWait" value="10000" />
+				<property name="Pool.PingQuery" value="select * from user" />
+				<property name="Pool.PingEnabled" value="false" />
+				<property name="Pool.PingConnectionsOlderThan" value="0" />
+				<property name="Pool.PingConnectionsNotUsedFor" value="0" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="mappers/memoMapper.xml" />
+		<mapper resource="mappers/userMapper.xml" />
+	</mappers>
+</configuration>
