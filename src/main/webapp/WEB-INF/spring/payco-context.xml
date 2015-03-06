@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security/oauth2  http://www.springframework.org/schema/security/spring-security-oauth2.xsd">
+
+    <oauth2:resource id="resource"
+                     client-id="ALPlZgXNG0P2avwfq5ln"
+                     client-secret="q0zUbn0hU6"
+                     user-authorization-uri="https://alpha-id.payco.com/oauth2.0/authorize"
+                     access-token-uri="https://alpha-id.payco.com/oauth2.0/token"
+                     type="authorization_code"
+                     client-authentication-scheme="form"
+                     token-name="access_token"
+                     authentication-scheme="header" />
+                     
+    <oauth2:rest-template id="oAuth2RestTemplate" resource="resource" />
+                     
+                     
+</beans>

@@ -14,7 +14,7 @@ public class MemoDto {
 	private String positionY;
 	private String registerDate;
 	private String updateDate;
-
+	
 	public String getMemoId() {
 		return memoId;
 	}

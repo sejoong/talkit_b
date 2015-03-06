@@ -1,23 +1,43 @@
 package com.toast.talkit.model.dto;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDto {
+public class MemberDto {
 
-	private String userId;
+	private String id;
+	private String email;
 	private String name;
 	private String password;
 	private String registerDate;
 	private String updateDate;	
 
-	public String getUserId() {
-		return userId;
+	public static MemberDto intiPaycoMember(String id, String email){
+		MemberDto newMember = new MemberDto();
+		newMember.setId(id);
+		newMember.setEmail(email);
+		
+		return newMember;
+	}
+	
+	public String getId() {
+		return id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getName() {
@@ -52,6 +72,18 @@ public class UserDto {
 		this.updateDate = updateDate;
 	}
 
+	public void bindingData(Map bindingDatas){
+		for(Field field : this.getClass().getFields()){
+			if(bindingDatas.containsKey(field.getName())){
+				try {
+					field.set(this, bindingDatas.get(field.getName()));
+				} catch (Exception e) {
+					e.getCause().printStackTrace();
+				}
+			}
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
